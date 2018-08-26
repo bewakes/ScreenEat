@@ -13,13 +13,13 @@ class Screen:
         self.root_window = self.screen.get_root_window()
         active_window = self.screen.get_active_window()
 
-        monitor = self.screen.get_monitor_at_window(active_window)
-        self.area = self.screen.get_monitor_geometry(monitor)
-
-        if active:
+        if active and active_window:
             self.window = active_window
         else:
             self.window = self.root_window
+
+        monitor = self.screen.get_monitor_at_window(self.window)
+        self.area = self.screen.get_monitor_geometry(monitor)
 
     def eat(self):
         """Capture the screenshot and return the image."""
